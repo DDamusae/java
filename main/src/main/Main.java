@@ -9,6 +9,7 @@ public class Main {
 		int n; // 나머지를 저장할 변수
 		int result = 0, small = -1;
 
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 
 		N = scan.nextInt();
@@ -17,16 +18,15 @@ public class Main {
 			n = N - 5 * a;
 			b = n / 3;
 			n = n % 3;
+			
 			if(n == 0) result = a + b;
 			else result = small;
 			
-			if (small == -1 || result < small) {
-
+			if (small == -1 || result < small && n == 0) {
 				small = result;
 			}
 		}
 
 		System.out.println(small);
-		
 	}
 }
