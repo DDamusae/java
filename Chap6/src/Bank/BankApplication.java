@@ -63,25 +63,32 @@ public class BankApplication {
 		System.out.println("계좌 목록");
 		System.out.println("-----------------");
 		for (int i = 0; accountArray[i] != null; i++) {
-			System.out.print(accountArray[i].getAno() + "  " + accountArray[i].getOwner() + "  " + accountArray[i].getBalance());
+			System.out.print(
+					accountArray[i].getAno() + "  " + accountArray[i].getOwner() + "  " + accountArray[i].getBalance());
 			System.out.println();
 		}
 	}
 
 	private static void deposit() {
-	 // TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub
+
 		System.out.println("-----------------");
 		System.out.println("예끔");
 		System.out.println("-----------------");
 		System.out.print("계좌번호:");
 		Account ac = findAccount(scanner.next());
-		System.out.print("예금액: ");
-		ac.setBalance(ac.getBalance()+scanner.nextInt());
 		
-		System.out.println("예금이 성공되었습니다.");
-		System.out.println();
-	 }
+		if (ac == null) {
+			System.out.println("다시입력");
+			deposit();
+		} else {
+			System.out.print("예금액: ");
+			ac.setBalance(ac.getBalance() + scanner.nextInt());
+
+			System.out.println("예금이 성공되었습니다.");
+			System.out.println();
+		}
+	}
 
 	private static void withdraw() {
 		// TODO Auto-generated method stub
@@ -90,19 +97,30 @@ public class BankApplication {
 		System.out.println("-----------------");
 		System.out.print("계좌번호:");
 		Account ac = findAccount(scanner.next());
-		System.out.print("출금액: ");
-		ac.setBalance(ac.getBalance()-scanner.nextInt());
 		
-		System.out.println("출금이 성공되었습니다.");
-		System.out.println();
+		if (ac == null) {
+			System.out.println("다시입력");
+			withdraw();
+		} else {
+			System.out.print("출금액: ");
+			ac.setBalance(ac.getBalance() - scanner.nextInt());
+
+			System.out.println("출금이 성공되었습니다.");
+			System.out.println();
+		}
 	}
 
 	private static Account findAccount(String ano) {
-		for(int i=0; i<accountArray.length; i++) {
-			if(accountArray[i].getAno().equals(ano)) {
-				return accountArray[i];
+		for (int i = 0; accountArray[i] != null; i++) {
+			try {
+				if (accountArray[i].getAno().equals(ano)) {
+					return accountArray[i];
+				}
+			} catch (NullPointerException e) {
+				// TODO: handle exception
+				System.out.println("없는 계좌번호");
 			}
 		}
 		return null;
-	 }
+	}
 }
