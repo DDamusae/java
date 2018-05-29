@@ -1,6 +1,7 @@
 package p01.reference;
 
 public class RefTypeEx4 {
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 		Point p1 = null; //아무 값도 참조하지 않은 상태
 		
