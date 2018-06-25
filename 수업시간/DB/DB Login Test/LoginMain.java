@@ -19,7 +19,7 @@ public class LoginMain {
 			System.out.print("비밀번호 : ");
 			String pw = sc.next();
 			u = ls.login(id, pw);
-			if(user == null){
+			if(u == null){
 				System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
 			}
 			else{
