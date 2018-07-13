@@ -1,0 +1,23 @@
+forward 다른 페이지로 이동
+include 다른 페이지를 실행하고 다시 현재 페이지로 돌아온다.
+
+<jsp:include page="<%= pageName %>" flush="false">
+	<jsp:param value="<%= name %>" name="name"/>
+	<jsp:param value="<%= pageName %>" name="pageName"/>
+</jsp:include>
+=> 인클루드 하는 페이지에 넘겨 줄 파라미터 값 설정
+
+directive include
+<%@ include file="footer.jsp" %>
+=> 현재 페이지에 include 파일이 삽입된 후 컴파일, 실행한다.
+
+
+forward는 한번 실행하면 다른페이지로 이동 후 돌아오지 않기 때문에
+forward한 페이지의 내용은 보여지지 않는다.
+
+
+<jsp:param value= "<%= id %>" name="id"/>     // "<%= id %>"영역에 주의
+
+
+문자열 넘길때 인코딩 하여 넘김
+<jsp:param value= '<%= URLEncoder.encode("전고객","utf-8") %>' name="userName"/>

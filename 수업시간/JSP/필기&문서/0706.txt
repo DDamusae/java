@@ -1,0 +1,11 @@
+request.setAttribute("name", "홍길동");
+RequestDispatcher d = request.getRequestDispatcher("forwardMain.jsp");
+d.forward(request, response);
+정보 설정 및 내보냄
+
+
+history.go(-1) // 이전 페이지로 이동
+
+
+//set으로 넘긴 정보를 get으로 받아옴
+String name = (String)request.getAttribute("name"); // 형변환, set => get

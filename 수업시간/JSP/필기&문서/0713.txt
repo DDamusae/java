@@ -1,0 +1,17 @@
+request.getSession(true); 
+=>기존 세션이 없으면 세션을 만들고 있으면 기존 세션을 사용.
+request.getSession(false); 
+=>기존 세션이 없으면 null값을 리턴 있으면 기존 세션을 사용.
+
+session.invalidate();
+=> 세션 삭제
+
+
+표현언어(Expression Language)
+${ }: 이 표현식이 실행되는 시점에 곧바로 계산 (Immediate Expression)
+#{ }: 실제로 값이 필요한 시점에 값을 계산(Deffered Expression)
+
+<c:catch var="errmsg"><%= 10/0 %></c:catch>
+=> 10/0을 실행했을때의 에러 메세지(= try-catch)
+<c:out value="${errmsg }"></c:out>
+=> 위의 변수에 저장된 에러 메세지 출력

@@ -1,0 +1,25 @@
+<% %> => 스크립트릿
+<%! %> => 선언문, 메소드 선언은 반드시 선언문 안에 한다.
+
+<%! //declare - 전역변수 선언
+	String str = "전역 변수입니다.";
+%>
+
+<%! //declare - 메소드 선언
+	String getStr(){
+		return str;
+	}
+%>
+
+<% //scriptlet
+	String str = "지역 변수입니다.";
+%>
+
+스크립트릿 출력하기: <%= scriptlet %>
+
+
+<%-- JSP 주석: <%= comment %> --%>
+
+<!-- Jsp에서 사용하는 HTML 주석부분 -->
+<!-- HTML 주석: <%= comment %> -->
+=> <%= comment %>부분은 주석처리 안됨

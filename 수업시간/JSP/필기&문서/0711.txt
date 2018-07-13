@@ -1,0 +1,18 @@
+//서블릿
+//서블릿에서 JavaBean 객체를 생성하고 값 지정
+PersonalInfo pi = new PersonalInfo();
+pi.setName("홍길동");
+pi.setGender('남');
+pi.setAge(24);
+
+//request객체에 세트하고 내보냄
+request.setAttribute("pinfo", pi);
+RequestDispatcher r = request.getRequestDispatcher("test02/customerInfoViewer.jsp");
+r.forward(request, response);
+
+//JSP
+//request영역으로부터 자바빈 객체를 가져오기
+<jsp:useBean id="pinfo" class="test02.PersonalInfo" scope="request"/><br>
+이름: <jsp:getProperty property="name" name="pinfo"/><br>
+성별: <jsp:getProperty property="gender" name="pinfo"/><br>
+나이: <jsp:getProperty property="age" name="pinfo"/><br>

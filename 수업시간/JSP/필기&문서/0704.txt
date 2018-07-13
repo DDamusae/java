@@ -1,0 +1,45 @@
+src에는 servlet이나 java 프로그램 작성
+나머지는 WebContent안에 작성
+
+http://localhost:8080/Ch01_Start/index.html
+http://127.0.0.1:8080/Ch01_Start/index.html
+
+http://192.168.1.43:8080/Ch01_Start/index.html
+
+<%= %> 서버에서 받은 내용을 출력
+
+둘 중 하나만 사용해야 실행 가능
+1. 어노테이션 방식 @WebServlet("/current") 
+2. web.xml 방식 
+  <servlet>
+  	<servlet-name>Time</servlet-name>
+  	<servlet-class>CurrentTime</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Time</servlet-name>
+  	<url-pattern>/current</url-pattern>
+  </servlet-mapping>
+
+
+response.setContentType("text/html");
+response.setCharacterEncoding("utf-8");
+=> 1줄로 압축
+=> response.setContentType("text/html; charset=utf-8");
+
+request: 날아오는 정보
+
+get방식: 보안 취약
+post방식: 중요 정보 숨김
+
+
+http://(		)/memReg
+MemRegServlet
+memReg.html
+get방식
+회원가입
+	회원명 name
+	주소 addr
+	전화번호 tel
+	취미 hobby
+=> 입력화면 출력
+

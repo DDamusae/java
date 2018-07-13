@@ -1,0 +1,32 @@
+EL(Parameter):: ${id}<br>
+EL(Attribute):: ${id_attr}<br>
+Jsp(Parameter):: <%= session.getAttribute("id") %><br>
+Jsp(Attribute):: <%= session.getAttribute("id_attr") %><br>
+
+removeAttribute(String name) : 속성 지우기. 135p
+
+
+영역별 속성 설정
+request.setAttribute("id", "aaaa"); //리퀘스트 영역(하나의 HTTP 요청 처리 영역)
+session.setAttribute("id", "bbbb"); //세션 영역 (하나의 웹 브라우저 영역)
+application.setAttribute("id", "cccc"); //어플리케이션 영역 (하나의 웹 어플리케이션 영역)
+
+include나 forward를 사용하면 request영역에 해당, 전혀 다른 페이지를 열 경우 request영역을 벗어남
+
+Page - JSP가 처리되는 동안 생성된 JSP에서 사용
+Request - Client의 요청을 처리하는 동안 Forward, Include되는 자원들과 공유
+Session - Session이 유지되는 동안 여러 자원간의 공유. Client의 재 요구시 계속 사용 가능
+Application - 컨테이너가 작동하는 동안 동일한 Web Applicaion에 속하는 모든 자원간의 공유(톰캣 서버가 켜진 시점부터 꺼지는 시점까지)
+
+
+//post방식
+request.setCharacterEncoding("utf-8"); //get방식은 필요 없음
+
+
+
+//web.xml에 에러 페이지 지정
+<error-page>
+	<error-code>404</error-code>
+	<location>/error404.jsp</location>
+</error-page>
+
