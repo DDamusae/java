@@ -1,0 +1,11 @@
+<Context>
+	<Resource name="jdbc/jsptest"
+	auth="Container"
+	type="javax.sql.DataSource"
+	username="jspdb"
+	password="jspdb"
+	driverClassName="oracle.jdbc.driver.OracleDriver"
+	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	url="jdbc:oracle:thin:@localhost:1521:orcl"
+	maxActive="500"/>
+</Context>
