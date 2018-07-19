@@ -1,0 +1,13 @@
+코어태그를 사용하려면
+lib폴더에 jstl-1.2.jar파일이 있어야 하고 taglib 디렉티브를 추가해줘야 한다.
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+반복문
+<c:forEach var="menu" items="${MENU }">
+	<li>${menu }</li>
+</c:forEach>
+
+토큰사용 반복 및 카운트
+<c:forTokens var="i" items="${subj }" delims=",/" varStatus="vs">
+	<c:out value="${vs.count }.${i }"></c:out>&nbsp;
+</c:forTokens>

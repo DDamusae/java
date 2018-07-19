@@ -1,0 +1,106 @@
+request.setAttribute("RESULT", new Integer(sum));
+=> RESULT라는 이름으로 저장
+RequestDispatcher d = request.getRequestDispatcher("hundredResult.jsp");
+d.forward(request, response);
+=>hundredResult.jsp로 넘김
+<!-- 대소문자 구분 -->
+1~100합:: ${RESULT }<br> //출력 됨
+1~100합:: ${result }<br> //출력 안됨
+
+
+
+<form action="petsResult.jsp">
+	아이디:: <input type="text" name="id"><br>
+	개:: <input type="checkBox" name="animal" value="개">
+	고양이:: <input type="checkBox" name="animal" value="고양이">
+	금붕어:: <input type="checkBox" name="animal" value="금붕어"><br><br>
+	<input type="reset" value="취소">
+	<input type="submit" value="확인">
+</form>
+petsResult.jsp에서 
+${param.id } =>id라는 이름의 파라메터 반환
+${paramValues.animal[i] } => animal이라는 이름의 파라메터들 중에서 i번째 값 반환
+
+
+
+<%
+	Cookie c = new Cookie("NAME", "John");
+	response.addCookie(c);
+%>
+=> 쿠키값을 설정
+다른 페이지에서 쿠키값을 반환하여 사용
+${cookie.NAME.value }<br>
+
+
+
+web.xml파일에 파라미터를 다음과 같이 초기화
+<context-param>
+  	<param-name>DB_NAME</param-name>
+	<param-value>MYSQL</param-value>
+</context-param>
+jsp파일에서
+${initParam.DB_NAME }<br>로 호출할 수 있다.
+
+
+
+${pageContext.request.requestURI }: request.getRequestURI()를 수행
+
+
+사칙연산
+	x = ${param.num1 }, y = ${param.num2 }<br><br>
+	x + y = ${param.num1 + param.num2 }<br>
+	x - y = ${param.num1 - param.num2 }<br>
+	x * y = ${param.num1 * param.num2 }<br>
+	x / y = ${param.num1 / param.num2 }<br>
+	x % y = ${param.num1 % param.num2 }<br>
+	x가 더 큰가 ${param.num1 - param.num2 > 0 }<br>
+	y가 더 큰가 ${param.num1 - param.num2 < 0 }<br>
+	x와 y가 모두 양수인가 ${param.num1 > 0 && param.num2 > 0 }<br>
+	x와 y가 같은가 ${param.num1 == param.num2 ? "yes" : "no" }<br>
+	<hr>
+	x / y = ${param.num1 div param.num2 }<br>
+	x % y = ${param.num1 mod param.num2 }<br>
+	둘다 양수인가 ${(param.num1 gt 0) and  (param.num2 gt 0) }<br>
+	둘다 음수인가 ${(param.num1 lt 0) and  (param.num2 lt 0) }<br>
+
+문자열 연산
+	입력 문자열: ${param.str1 }, ${param.str2 }<br>
+	두 문자열이 같은가 ${param.str1 eq param.str2 }<br>
+	어느 문자열이 먼저 인가 ${param.str1 < param.str2 ? param.str1 : param.str2 }<br>
+
+empty
+	안녕하세요, ${empty param.ID ? "guest" : param.ID }님 감사합니다.<br>
+
+
+
+request에 w배열을 통채로 보냄
+<%
+	String w[] = new String[3];
+	w[0] = "홍길동1";
+	w[1] = "홍길동2";
+	w[2] = "홍길동3";
+	
+	request.setAttribute("WINNERS", w);
+%>
+
+
+
+객체를 통채로 request에 담아 보냄
+<%
+	ProductInfo p = new ProductInfo();
+	p.setName("초코케익");
+	p.setValue(20000);
+	request.setAttribute("PRODUCT", p);
+	RequestDispatcher d = request.getRequestDispatcher("productInfoView.jsp");
+	d.forward(request, response);
+%>
+
+
+
+
+
+
+
+
+
+
