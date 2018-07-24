@@ -1,0 +1,35 @@
+package article.service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import article.dao.ArticleContentDao;
+import article.dao.ArticleDao;
+import article.model.Article;
+import article.model.ArticleContent;
+import jdbc.connection.ConnectionProvider;
+
+//게시판 읽기 기능 제공하는 Service 클래스
+public class ReadArticleService {
+	private ArticleDao articleDao = new ArticleDao();
+	private ArticleContentDao contentDao = new ArticleContentDao();
+	
+	public ArticleData getArticle(int articleNum, boolean increaseReadCount) {
+		try (Connection conn = ConnectionProvider.getConnection()){
+			Article article = articleDao.selectById(conn, articleNum);
+			if(article == null) {
+				throw new ArticleNotFountException();
+			}
+			ArticleContent content = contentDao.selectById(conn, articleNum);
+			if(content == null) {
+				throw new ArticleContentNotFountException();
+			}
+			if(increaseReadCount) {
+				articleDao.increaseReadCount(conn, articleNum);
+			}
+			return new ArticleData(article, content);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+}
