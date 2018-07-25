@@ -1,0 +1,15 @@
+ServletContext - 특정한 서블릿에 있는 내용들을 초기값 설정
+
+String readFile = "/WEB-INF/testFile.txt";
+//주 스트림		 //ServletContext에서 사용: ServletConfig에 있는 getServletContext()
+InputStream is = getServletContext().getResourceAsStream(readFile);
+//보조 스트림
+BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+
+//ServletConfig: <init-param>으로 등록된 서블릿에서만 사용 가능: getInitParameter("area");
+//ServletContext: 다수의 JSP & Servlet에서 공유해서 사용(Application Scope)
+//				  getServletContext.getInitParameter();
+
+
+ServletContextListener: Web Application이 초기화 되고 제거되는 이벤트를 감지

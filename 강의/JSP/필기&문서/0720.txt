@@ -1,0 +1,19 @@
+[urlpattern.directory]
+http://localhost:8080/Ch17_Servlet/Atest		Atest
+http://localhost:8080/Ch17_Servlet/test			Ctest
+http://localhost:8080/Ch17_Servlet/test/Btest		Btest
+http://localhost:8080/Ch17_Servlet/			Dtest
+http://localhost:8080/Ch17_Servlet/xxx			Dtest
+http://localhost:8080/Ch17_Servlet/kkkk			Dtest
+
+
+
+[urlpattern.extension]
+http://localhost:8080/Ch17_Servlet/index.html
+위에 사용했던 Dtest 서블릿을 주석처리 해야 함
+
+http://localhost:8080/Ch17_Servlet/xx.do		Etest
+http://localhost:8080/Ch17_Servlet/xyz/a.nhn		Gtest
+http://localhost:8080/Ch17_Servlet/xyz/a.do		Ftest
+http://localhost:8080/Ch17_Servlet/xyz/kk.go		Ftest
+확장자 패턴 어노테이션에는 / 사용 불가

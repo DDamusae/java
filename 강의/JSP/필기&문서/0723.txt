@@ -1,0 +1,33 @@
+DB연결 방법 DBCPInit방법, context.xml방법 등
+
+서블릿은 화면에 출력할 메시지를 생성해서 JSP에 전달,
+JSP는 서블릿으로부터 전달받은 메시지를 화면에 출력
+
+컨트롤러 서블릿의 5단계
+//1단계 HTTP요청 받음
+//2단계 request객체로부터 사용자의 요청을 파악
+//3단계 요청한 기능을 수행
+//4단계 request나 session에 처리 결과를 저장 *****
+	request.setAttribute("result", resultObject);
+//5단계 RequestDispatcher를 사용해 알맞은 뷰로 포워딩
+
+
+//RequestDispatcher는 값이 넘어감
+request.setAttribute("username", "홍길동");
+request.setAttribute("useraddress", "서울");
+RequestDispatcher d = request.getRequestDispatcher("Response");
+d.forward(request, response);
+
+//sendRedirect는 값이 안넘어감 (파라메터로는 넘길 수 있음)
+request.setAttribute("username", "홍길동");
+request.setAttribute("useraddress", "서울");
+response.sendRedirect("ResponseRedirect");
+
+//response servlet
+String username = (String) request.getAttribute("username");
+String useraddress = (String) request.getAttribute("useraddress");
+
+filter - url패턴에 맞는 파일들에 동일한 작업 수행
+1.request 파라미터 이용해 요청의 필터작업 수행
+2.체인의 다음 필터 처리
+3.response를 이용해 응답의 필터링 작업 수행
