@@ -1,0 +1,20 @@
+drop table board;
+drop SEQUENCE seq;
+
+CREATE TABLE BOARD(
+SEQ NUMBER(5) PRIMARY KEY,
+TITLE VARCHAR2(200),
+WRITER VARCHAR2(20),
+CONTENT VARCHAR2(2000),
+REGDATE DATE DEFAULT SYSDATE,
+CNT NUMBER(5) DEFAULT 0
+);
+
+create sequence seq
+minvalue 0
+start WITH 0
+increment by 1;
+
+INSERT INTO BOARD(SEQ, TITLE, WRITER, CONTENT) VALUES(seq.nextval, '가입인사', '관리자', '잘부탁 드립니다....');
+
+

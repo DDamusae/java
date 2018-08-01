@@ -27,12 +27,10 @@ public class Member {
 		return regDate;
 	}
 	
-	//패스워드 확인용 메소드
 	public boolean matchPassword(String pwd) {
 		return password.equals(pwd);
 	}
 	
-	//패스워드 변경시 사용하는 메소드
 	public void changePassword(String newPwd) {
 		this.password = newPwd;
 	}
