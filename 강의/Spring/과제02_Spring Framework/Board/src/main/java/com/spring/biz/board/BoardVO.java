@@ -60,7 +60,7 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		String result = "BoardVO [seq=" + seq + ", title=" + title + "]";
+		String result = "BoardVO [seq=" + seq + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", cnt=" + cnt +  "]";
 		return result;
 	}
 }
