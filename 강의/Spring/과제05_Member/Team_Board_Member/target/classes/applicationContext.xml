@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	
+<!-- DB 연결 소스 설정 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+		<property name="url"><value>jdbc:oracle:thin:@127.0.0.1:1521:orcl</value></property>
+		<property name="username"><value>spring</value></property>
+		<property name="password"><value>spring</value></property>
+	</bean>
+	
+<!-- 	team list -->
+	<bean id="teamDao" class="team.dao.impl.TeamDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="selectTeamUi" class="team.ui.SelectTeamUi">
+		<property name="teamDao" ref="teamDao"></property>
+	</bean>
+	
+	
+<!-- 	board list -->
+	<bean id="boardListDao" class="board.dao.impl.BoardListDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="selectBoardUi" class="board.ui.SelectBoardUi">
+		<property name="boardListDao" ref="boardListDao"></property>
+	</bean>
+	
+	<bean id="boardMenuUi" class="board.ui.BoardMenuUi">
+		<property name="selectBoardUi" ref="selectBoardUi"></property>
+	</bean>	
+	
+<!-- 	member list -->
+	<bean id="memberListDao" class="member.dao.impl.MemberListDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="selectMemberUi" class="member.ui.SelectMemberUi">
+		<property name="memberListDao" ref="memberListDao"></property>
+	</bean>
+	
+	<bean id="memberMenuUi" class="member.ui.MemberMenuUi">
+		<property name="selectMemberUi" ref="selectMemberUi"></property>
+	</bean>
+	
+<!-- 	menu -->
+	<bean id="menuUi" class="ui.MenuUi">
+		<property name="selectTeamUi" ref="selectTeamUi"></property>
+		<property name="boardMenuUi" ref="boardMenuUi"></property>
+		<property name="memberMenuUi" ref="memberMenuUi"></property>
+	</bean>
+	
+</beans>
