@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine().trim();
 		int count = 0;
@@ -30,5 +29,7 @@ public class Main {
 		}else {
 			System.out.println(count+1);
 		}
+		
+		scan.close();
 	}
 }

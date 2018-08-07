@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<bean id="logAop" class="ex2.aop.xml.advice.LogAop"></bean>
+	
+	<aop:config>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut expression="within(ex2.aop.xml.advice.*)" id="publicM"/>
+			<aop:around method="loggerAop" pointcut-ref="publicM"/>
+		</aop:aspect>
+		
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="publicM" expression="within(ex2.aop.xml.advice.*)"  />
+			<aop:before pointcut-ref="publicM" method="beforeAdvice" />
+		</aop:aspect>
+		
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="publicM" expression="within(ex2.aop.xml.advice.*)"  />
+		<aop:after-returning pointcut-ref="publicM" method="afterReturningAdvice" />
+		</aop:aspect>
+		
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="publicM" expression="within(ex2.aop.xml.advice.*)"  />
+		<aop:after-throwing pointcut-ref="publicM" method="afterThrowingAdvice" />
+		</aop:aspect>
+		
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="publicM" expression="within(ex2.aop.xml.advice.*)"  />
+			<aop:after pointcut-ref="publicM" method="afterAdvice" />
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="student" class="ex2.aop.xml.advice.Student">
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="10"></property>
+		<property name="gradeNum" value="3"></property>
+		<property name="classNum" value="5"></property>
+	</bean>
+	
+	<bean id="worker" class="ex2.aop.xml.advice.Worker">
+		<property name="name" value="홍길순"></property>
+		<property name="age" value="35"></property>
+		<property name="job" value="개발자"></property>
+	</bean>
+	
+</beans>
