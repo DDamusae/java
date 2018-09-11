@@ -22,9 +22,15 @@ public interface BoardDAO {
 	List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	int listSearchCount(SearchCriteria cri) throws Exception;
 	
-	//reply count
+	//Reply count
 	void updateReplyCnt(Integer bno, int amount) throws Exception;
 	
-	//view count
+	//View count
 	void updateViewCnt(Integer bno) throws Exception;
+	
+	//Attach
+	void addAttach(String fullName) throws Exception;
+	List<String> getAttach(Integer bno) throws Exception;
+	void deleteAttach(Integer bno) throws Exception;
+	void replaceAttach(String fullName, Integer bno) throws Exception;
 }

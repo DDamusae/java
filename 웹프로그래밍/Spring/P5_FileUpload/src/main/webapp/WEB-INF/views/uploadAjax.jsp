@@ -21,9 +21,9 @@
 </head>
 <body>
 	<h3>Ajax File Upload</h3>
-	<div class="fileDrop"></div>
+	<div class='fileDrop'></div>
 	
-	<div class="uploadedList"></div>
+	<div class='uploadedList'></div>
 	
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script>
@@ -37,7 +37,7 @@
 			var files = event.originalEvent.dataTransfer.files; //전달된 파일 데이터를 가져올 때
 			var file = files[0];
 			
-			console.log(files);
+// 			console.log(files);
 			
 			var formData = new FormData(); //FormData를 이용해서 서버로 파일전송 호출
 			formData.append("file", file); //'file' 이름으로 끌어다 놓은 파일 객체를 추가
@@ -56,7 +56,7 @@
 					console.log(checkImageType(data));
 					
 					if(checkImageType(data)){
-						str = "<div><a href=displayFile?fileName="+getImageLink(data)+">"+"<img src='displayFile?fileName="+data+"'/>"+getImageLink(data)+"</a><small data-src="+data+">X</small></div>";
+						str = "<div><a href='displayFile?fileName="+getImageLink(data)+"'>"+"<img src='displayFile?fileName="+data+"'/>"+getImageLink(data)+"</a><small data-src="+data+">X</small></div>";
 					}else{
 						str = "<div><a href='displayFile?fileName=" + data + "'/>" + getOriginalName(data) + "</a><small data-src="+data+">X</small></data>";
 					}
@@ -71,7 +71,7 @@
 			$.ajax({
 				url: "deleteFile",
 				type: "post",
-				data: {file:$(this).attr("data-src")},
+				data: {fileName:$(this).attr("data-src")},
 				dataType: "text",
 				success: function(result){
 					if(result == 'deleted'){

@@ -9,9 +9,13 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 
 public class UploadFileUtils {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 	
 	public static String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception {
 		UUID uid = UUID.randomUUID();
@@ -54,6 +58,7 @@ public class UploadFileUtils {
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
 		makeDir(uploadPath, yearPath, monthPath, datePath);
+		logger.info(datePath);
 		return datePath;
 	}
 	
